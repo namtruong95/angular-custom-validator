@@ -7,6 +7,10 @@ const routes: Routes = [
     loadChildren: './password-equal/password-equal.module#PasswordEqualModule'
   },
   {
+    path: 'numberic',
+    loadChildren: './numberic/numberic.module#NumbericModule'
+  },
+  {
     path: '**',
     redirectTo: '',
     pathMatch: 'full'

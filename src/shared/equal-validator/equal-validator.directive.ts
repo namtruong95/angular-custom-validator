@@ -1,5 +1,5 @@
 import { Directive, forwardRef, Attribute } from '@angular/core';
-import { NG_VALIDATORS, AbstractControl } from '@angular/forms';
+import { NG_VALIDATORS, AbstractControl, Validator } from '@angular/forms';
 
 @Directive({
   selector: '[neoEqualValidator][formControlName],[neoEqualValidator][formControl],[neoEqualValidator][ngModel]',
@@ -11,7 +11,7 @@ import { NG_VALIDATORS, AbstractControl } from '@angular/forms';
     }
   ]
 })
-export class EqualValidatorDirective {
+export class EqualValidatorDirective implements Validator {
 
   constructor(
     @Attribute('neoEqualValidator') public neoEqualValidator: string,
