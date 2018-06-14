@@ -21,7 +21,10 @@ export class NumbericValidatorDirective implements Validator {
   validate(c: AbstractControl): { [key: string]: any } {
     const value = c.value;
 
-    if (!!value && (isNaN(value) || value < this.min || value > this.max)) {
+    if (!!value
+      && (isNaN(value)
+      || (this.min && value < this.min)
+      || (this.max && value > this.max))) {
       return { neoNumbericValidator: true };
     }
 
