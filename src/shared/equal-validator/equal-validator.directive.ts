@@ -28,28 +28,28 @@ export class EqualValidatorDirective implements Validator {
 
   validate(c: AbstractControl): { [key: string]: any } {
     // self value
-    const v = c.value;
+    const value = c.value;
 
     // control vlaue
     const e = c.root.get(this.neoEqualValidator);
 
     // value not equal
-    if (e && v !== e.value && !this.isReverse) {
+    if (e && !!value && value !== e.value && !this.isReverse) {
       return { neoEqualValidator: true };
     }
 
     // value equal and reverse
-    if (e && v === e.value && this.isReverse) {
-        delete e.errors['neoEqualValidator'];
+    if (e && value === e.value && this.isReverse) {
+      delete e.errors['neoEqualValidator'];
 
-        if (!Object.keys(e.errors).length) {
-          e.setErrors(null);
-        }
+      if (!Object.keys(e.errors).length) {
+        e.setErrors(null);
+      }
     }
 
     // value not equal and reverse
-    if (e && v !== e.value && this.isReverse) {
-        e.setErrors({ neoEqualValidator: true });
+    if (e && !!value && value !== e.value && this.isReverse) {
+      e.setErrors({ neoEqualValidator: true });
     }
 
     return null;
