@@ -2,7 +2,7 @@
   <div class="d-table-cell align-middle">
     <div class="card">
       <div class="card-body">
-        <form #NumberForm="ngForm" novalidate>
+        <form #ValidatorForm="ngForm" novalidate>
           <div class="form-group">
             <label for="Numberic">Numberic</label>
             <input
@@ -11,8 +11,6 @@
               [ngClass]="{ 'is-invalid': Numberic.dirty && Numberic.errors }"
               name="numberic"
               id="Numberic"
-              min="10"
-              max="20"
               neoNumbericValidator
               required
               ngModel
@@ -30,8 +28,58 @@
             </div>
           </div>
 
+          <div class="form-group">
+            <label for="Email">Email</label>
+            <input
+              type="text"
+              class="form-control"
+              [ngClass]="{ 'is-invalid': Email.dirty && Email.errors }"
+              name="email"
+              id="Email"
+              neoEmailValidator
+              required
+              ngModel
+              #Email="ngModel"
+              >
+
+            <div class="invalid-feedback"
+              *ngIf="Email.errors?.required">
+              please enter email
+            </div>
+
+            <div class="invalid-feedback"
+              *ngIf="Email.errors?.neoEmailValidator">
+              email is invalid
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="Phone">Phone</label>
+            <input
+              type="text"
+              class="form-control"
+              [ngClass]="{ 'is-invalid': Phone.dirty && Phone.errors }"
+              name="phone"
+              id="Phone"
+              neoPhoneValidator
+              required
+              ngModel
+              #Phone="ngModel"
+              >
+
+            <div class="invalid-feedback"
+              *ngIf="Phone.errors?.required">
+              please enter phone
+            </div>
+
+            <div class="invalid-feedback"
+              *ngIf="Phone.errors?.neoPhoneValidator">
+              phone is invalid
+            </div>
+          </div>
+
           <div class="form-group text-center">
-            <button type="submit" class="btn btn-primary" [disabled]="NumberForm.form.invalid">
+            <button type="submit" class="btn btn-primary" [disabled]="ValidatorForm.form.invalid">
               Submit
             </button>
           </div>
